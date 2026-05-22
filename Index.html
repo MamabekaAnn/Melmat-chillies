@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melmat Chillies</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #333;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: white;
+    position: sticky;
+    top: 0;
+}
+
+nav h2 {
+    color: #c40000;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 40px;
+    background: linear-gradient(to right, #fff 50%, #0b6623 50%);
+    color: black;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text h1 {
+    font-size: 45px;
+}
+
+.hero-text span {
+    color: #c40000;
+}
+
+.hero-text p {
+    margin: 20px 0;
+}
+
+.btn {
+    background: #c40000;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.hero-img img {
+    width: 350px;
+    border-radius: 10px;
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background: #0b6623;
+    color: white;
+    text-align: center;
+}
+
+.feature {
+    width: 30%;
+}
+
+/* PRODUCTS */
+.products {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.product img {
+    width: 100%;
+}
+
+/* CONTACT */
+.contact {
+    background: #f5f5f5;
+    padding: 40px;
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    background: #0b6623;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <h2>🌶️ Melmat</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Pure Flavours. <span>Trusted Quality.</span></h1>
+        <p>Home made chillies crafted with passion.</p>
+        <a href="https://wa.me/27679435186" class="btn">Order Now</a>
+    </div>
+
+    <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1604908812159-6c63c5e3e5c0" alt="chillies">
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="feature">
+        <h3>🌶️ Authentic Taste</h3>
+        <p>Home made. Pure. Natural.</p>
+    </div>
+
+    <div class="feature">
+        <h3>🏆 Quality You Trust</h3>
+        <p>Carefully grown. Hygienically made.</p>
+    </div>
+
+    <div class="feature">
+        <h3>❤️ Passion in Every Bite</h3>
+        <p>Crafted with love. Made for you.</p>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+    <h2>Our Products</h2>
+
+    <div class="product-list">
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38">
+            <h3>Fresh Chillies</h3>
+            <p>Natural farm-grown chillies.</p>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1615486365013-8a61bb64abd0">
+            <h3>Dried Chillies</h3>
+            <p>Long-lasting rich spice.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+    <h2>Contact Us</h2>
+    <p>📞 067 943 5186</p>
+    <p>💬 WhatsApp available</p>
+    <p>🎵 TikTok: @melmatchillies</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Melmat Home Made Chillies</p>
+</footer>
+
+</body>
+</html>
