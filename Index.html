@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,12 +19,12 @@ body {
     background: #fff;
 }
 
-/* NAV */
+/* NAVBAR */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 20px;
     background: white;
     position: sticky;
     top: 0;
@@ -33,10 +33,11 @@ nav {
 
 .logo {
     color: #c40000;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 20px;
 }
 
+/* MENU */
 .nav-links {
     display: flex;
     gap: 20px;
@@ -47,6 +48,7 @@ nav {
     color: #333;
 }
 
+/* HAMBURGER */
 .menu-toggle {
     display: none;
     font-size: 26px;
@@ -55,25 +57,21 @@ nav {
 
 /* HERO */
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 60px 30px;
+    padding: 80px 20px;
+    text-align: center;
+    background: linear-gradient(to bottom, #0b6623, #ffffff);
+    color: white;
 }
 
-.hero-text {
-    max-width: 500px;
+.hero h1 {
+    font-size: 35px;
 }
 
-.hero-text h1 {
-    font-size: 45px;
+.hero span {
+    color: #ff2e2e;
 }
 
-.hero-text span {
-    color: #c40000;
-}
-
-.hero-text p {
+.hero p {
     margin: 20px 0;
 }
 
@@ -81,29 +79,9 @@ nav {
     background: #c40000;
     color: white;
     padding: 12px 25px;
-    border-radius: 30px;
     text-decoration: none;
-}
-
-/* IMAGE SLIDER */
-.slider {
-    width: 350px;
-    height: 350px;
-    position: relative;
-}
-
-.slider img {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.slider img.active {
-    opacity: 1;
+    border-radius: 30px;
+    display: inline-block;
 }
 
 /* PRODUCTS */
@@ -118,6 +96,12 @@ nav {
     gap: 20px;
 }
 
+.product {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 /* FOOTER */
 footer {
     background: #0b6623;
@@ -128,17 +112,6 @@ footer {
 
 /* MOBILE */
 @media(max-width:768px) {
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .slider {
-        margin-top: 30px;
-        width: 90%;
-        height: 250px;
-    }
 
     .nav-links {
         position: absolute;
@@ -179,37 +152,27 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-text">
-        <h1>Pure Flavours. <span>Trusted Quality.</span></h1>
-        <p>Fresh, dried & crushed chillies made with passion.</p>
+    <h1>Pure Flavours. <span>Trusted Quality.</span></h1>
+    <p>Home made chillies crafted with passion 🌶️</p>
 
-        <a href="https://wa.me/27679435186" class="btn">
-            Order Now
-        </a>
-    </div>
-
-    <div class="slider">
-        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38" class="active">
-        <img src="https://images.unsplash.com/photo-1615486365013-8a61bb64abd0">
-        <img src="https://images.unsplash.com/photo-1604908812159-6c63c5e3e5c0">
-    </div>
+    <a href="https://wa.me/27679435186" class="btn">
+        Order Now on WhatsApp
+    </a>
 </section>
 
 <!-- PRODUCTS -->
 <section class="products">
     <h2>Our Products</h2>
+
     <div class="product-grid">
-        <div>
+        <div class="product">
             <h3>Fresh Chillies</h3>
-            <p>Farm fresh and natural.</p>
+            <p>Natural and farm-grown.</p>
         </div>
-        <div>
+
+        <div class="product">
             <h3>Dried Chillies</h3>
-            <p>Bold and long-lasting.</p>
-        </div>
-        <div>
-            <h3>Crushed Chillies</h3>
-            <p>Perfect spice for every meal.</p>
+            <p>Strong, rich flavour.</p>
         </div>
     </div>
 </section>
@@ -224,18 +187,7 @@ footer {
 function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
 }
-
-/* SLIDER */
-let slides = document.querySelectorAll(".slider img");
-let index = 0;
-
-setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}, 3000);
 </script>
 
 </body>
-</html>
-    
+</html>   
