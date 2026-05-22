@@ -1,4 +1,4 @@
-     <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -37,7 +37,6 @@ nav {
     font-size: 20px;
 }
 
-/* MENU */
 .nav-links {
     display: flex;
     gap: 20px;
@@ -46,6 +45,23 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: #333;
+    position: relative;
+}
+
+/* underline hover */
+.nav-links a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #c40000;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* HAMBURGER */
@@ -58,23 +74,35 @@ nav {
 /* HERO */
 .hero {
     padding: 80px 20px;
-    text-align: center;
     background: linear-gradient(to bottom, #0b6623, #ffffff);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-text {
+    max-width: 500px;
     color: white;
+    animation: slideUp 1s ease;
 }
 
-.hero h1 {
-    font-size: 35px;
+.hero-text h1 {
+    font-size: 40px;
 }
 
-.hero span {
+.hero-text span {
     color: #ff2e2e;
 }
 
-.hero p {
+.hero-text p {
     margin: 20px 0;
 }
 
+/* BUTTON */
 .btn {
     background: #c40000;
     color: white;
@@ -82,6 +110,31 @@ nav {
     text-decoration: none;
     border-radius: 30px;
     display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #900000;
+    transform: scale(1.05);
+}
+
+/* HERO IMAGES */
+.hero-images {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-images img {
+    width: 110px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* hover animation */
+.hero-images img:hover {
+    transform: scale(1.1) rotate(2deg);
 }
 
 /* PRODUCTS */
@@ -100,6 +153,12 @@ nav {
     border: 1px solid #eee;
     padding: 20px;
     border-radius: 10px;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* FOOTER */
@@ -110,8 +169,29 @@ footer {
     padding: 20px;
 }
 
+/* ANIMATION */
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* MOBILE */
 @media(max-width:768px) {
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-images {
+        justify-content: center;
+    }
 
     .nav-links {
         position: absolute;
@@ -152,12 +232,24 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-    <h1>Pure Flavours. <span>Trusted Quality.</span></h1>
-    <p>Home made chillies crafted with passion 🌶️</p>
+    <div class="hero-content">
 
-    <a href="https://wa.me/27679435186" class="btn">
-        Order Now on WhatsApp
-    </a>
+        <div class="hero-text">
+            <h1>Pure Flavours. <span>Trusted Quality.</span></h1>
+            <p>Home made chillies crafted with passion 🌶️</p>
+
+            <a href="https://wa.me/27679435186" class="btn">
+                Order Now on WhatsApp
+            </a>
+        </div>
+
+        <div class="hero-images">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38">
+            <img src="https://images.unsplash.com/photo-1615486365013-8a61bb64abd0">
+            <img src="https://images.unsplash.com/photo-1604908812159-6c63c5e3e5c0">
+        </div>
+
+    </div>
 </section>
 
 <!-- PRODUCTS -->
@@ -173,6 +265,11 @@ footer {
         <div class="product">
             <h3>Dried Chillies</h3>
             <p>Strong, rich flavour.</p>
+        </div>
+
+        <div class="product">
+            <h3>Crushed Chillies</h3>
+            <p>Perfect spice for every meal.</p>
         </div>
     </div>
 </section>
@@ -190,4 +287,4 @@ function toggleMenu() {
 </script>
 
 </body>
-</html>   
+</html>
