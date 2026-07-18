@@ -54,7 +54,7 @@ footer{background:#0b6623;color:#fff;text-align:center;padding:20px}
     <a href="#">Home</a>
     <a href="#featured-products">Products</a>
     <a href="#">Contact</a>
-    <a href="#" onclick="openCart(); return false;">
+    <a href="javascript:void(0)" onclick="openCart()">
         🛒 Cart (<span id="cart-count">0</span>)
     </a>
 </div>
@@ -146,6 +146,7 @@ function toggleMenu() {
 }
 
 function addToCart(name, price) {
+    alert(name + " added");
     let item = cart.find(p => p.name === name);
 
     if (item) {
