@@ -138,150 +138,116 @@ Close
 
 </div>
 </div>
-
 <script>
-
 let cart = [];
 
-function toggleMenu(){
+function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
 }
 
-function addToCart(name, price){
-
+function addToCart(name, price) {
     let item = cart.find(p => p.name === name);
 
-    if(item){
+    if (item) {
         item.qty++;
-    }else{
+    } else {
         cart.push({
-            name:name,
-            price:price,
-            qty:1
+            name: name,
+            price: price,
+            qty: 1
         });
     }
 
     updateCart();
 }
 
-function updateCart(){
-
-    document.getElementById("cart-count").innerHTML =
-    cart.reduce((sum,item)=>sum+item.qty,0);
-
+function updateCart() {
+    document.getElementById("cart-count").textContent =
+        cart.reduce((sum, item) => sum + item.qty, 0);
 }
 
-function openCart(){
+function openCart() {
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
 
-    let items = "";
+    cartItems.innerHTML = "";
+
     let total = 0;
 
-    cart.forEach((item,index)=>{
-
+    cart.forEach((item, index) => {
         total += item.price * item.qty;
 
-        items += `
-        <div style="margin-bottom:20px;border-bottom:1px solid #ddd;padding-bottom:10px;">
+        cartItems.innerHTML += `
+        <div style="border-bottom:1px solid #ddd;padding:10px 0;">
+            <h3>${item.name}</h3>
+            <p>R${item.price}</p>
 
-        <h3>${item.name}</h3>
+            <button onclick="decrease(${index})">-</button>
+            <strong>${item.qty}</strong>
+            <button onclick="increase(${index})">+</button>
 
-        <p>R${item.price}</p>
-
-        <button onclick="decrease(${index})">-</button>
-
-        ${item.qty}
-
-        <button onclick="increase(${index})">+</button>
-
-        <button onclick="removeItem(${index})">
-        Remove
-        </button>
-
+            <button onclick="removeItem(${index})">Remove</button>
         </div>
         `;
-
     });
 
-    document.getElementById("cartItems").innerHTML = items;
-
-    document.getElementById("cartTotal").innerHTML = "Total: R"+total;
+    cartTotal.textContent = "Total: R" + total;
 
     document.getElementById("cartModal").style.display = "flex";
-
 }
 
-function closeCart(){
-
+function closeCart() {
     document.getElementById("cartModal").style.display = "none";
-
 }
 
-function increase(i){
-
-    cart[i].qty++;
-
+function increase(index) {
+    cart[index].qty++;
     updateCart();
-
     openCart();
-
 }
 
-function decrease(i){
+function decrease(index) {
+    cart[index].qty--;
 
-    cart[i].qty--;
-
-    if(cart[i].qty<=0){
-
-        cart.splice(i,1);
-
+    if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
     }
 
     updateCart();
-
     openCart();
-
 }
 
-function removeItem(i){
-
-    cart.splice(i,1);
-
+function removeItem(index) {
+    cart.splice(index, 1);
     updateCart();
-
     openCart();
-
 }
 
-function checkoutWhatsApp(){
+function checkoutWhatsApp() {
 
-    let phone = "27679435186";
-
-    let message = "Hello Melmat Chillies 👋%0A%0A";
-
-    message += "I'd like to place an order.%0A%0A";
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
 
     let total = 0;
 
-    cart.forEach(item=>{
+    let message = "Hello Melmat Chillies 👋\n\n";
+    message += "I'd like to place the following order:\n\n";
 
-        message += "🌶 " + item.name + " x" + item.qty + "%0A";
-
+    cart.forEach(item => {
+        message += `🌶 ${item.name} x${item.qty} - R${item.price * item.qty}\n`;
         total += item.price * item.qty;
-
     });
 
-    message += "%0ATotal: R" + total;
-
-    message += "%0A%0APlease confirm my order.";
+    message += `\nTotal: R${total}`;
+    message += "\n\nPlease confirm my order.";
 
     window.open(
-        "https://wa.me/"+phone+"?text="+message,
+        "https://wa.me/27679435186?text=" + encodeURIComponent(message),
         "_blank"
     );
-
 }
-
 </script>
-
 </body>
 </html>
