@@ -4,404 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Melmat Chillies</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background: #fff;
-}
-
-/* NAVBAR */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: white;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    color: #c40000;
-    font-weight: 700;
-    font-size: 20px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    position: relative;
-}
-
-/* underline hover */
-.nav-links a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: #c40000;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* HAMBURGER */
-.menu-toggle {
-    display: none;
-    font-size: 26px;
-    cursor: pointer;
-}
-
-/* HERO */
-.hero {
-    padding: 80px 20px;
-    background: linear-gradient(to bottom, #0b6623, #ffffff);
-}
-
-.hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.hero-text {
-    max-width: 500px;
-    color: white;
-    animation: slideUp 1s ease;
-}
-
-.hero-text h1 {
-    font-size: 40px;
-}
-
-.hero-text span {
-    color: #ff2e2e;
-}
-
-.hero-text p {
-    margin: 20px 0;
-}
-
-/* BUTTON */
-.btn {
-    background: #c40000;
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 30px;
-    display: inline-block;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #900000;
-    transform: scale(1.05);
-}
-
-/* HERO IMAGES */
-.hero-images {
-    display: flex;
-    gap: 15px;
-}
-
-.hero-images img {
-    width: 110px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-/* hover animation */
-.hero-images img:hover {
-    transform: scale(1.1) rotate(2deg);
-}
-
-    /* Products */
-.products{
-    padding:70px 8%;
-    text-align:center;
-}
-
-.products h2{
-    color:#006633;
-    margin-bottom:40px;
-}
-
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-
-.card{
-    background:#fff;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    overflow:hidden;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-}
-
-.card img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-.card h3{
-    margin:15px 0;
-}
-
-.card p{
-    color:#d62828;
-    font-size:20px;
-    font-weight:bold;
-}
-
-.card button{
-    margin:20px;
-    padding:12px 25px;
-    background:#006633;
-    color:#fff;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-.card button:hover{
-    background:#004d29;
-}
-
-/* About */
-.about{
-    background:#f8f8f8;
-    padding:70px 8%;
-    text-align:center;
-}
-
-.about h2{
-    color:#006633;
-    margin-bottom:40px;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-
-.features div{
-    background:#fff;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-/* FOOTER */
-footer {
-    background: #0b6623;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-/* ANIMATION */
-@keyframes slideUp {
-    from {
-        transform: translateY(40px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* MOBILE */
-@media(max-width:768px) {
-
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-images {
-        justify-content: center;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        width: 200px;
-        display: none;
-        padding: 20px;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
+html{scroll-behavior:smooth;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#fff}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px;background:#fff;position:sticky;top:0;z-index:1000}
+.logo{color:#c40000;font-weight:700;font-size:20px}
+.nav-links{display:flex;gap:20px}
+.nav-links a{text-decoration:none;color:#333;position:relative}
+.nav-links a:after{content:"";width:0;height:2px;background:#c40000;position:absolute;left:0;bottom:-5px;transition:.3s}
+.nav-links a:hover:after{width:100%}
+.menu-toggle{display:none;font-size:26px;cursor:pointer}
+.hero{padding:80px 20px;background:linear-gradient(to bottom,#0b6623,#fff)}
+.hero-content{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.hero-text{max-width:500px;color:#fff}
+.hero-text h1{font-size:40px}.hero-text span{color:#ff2e2e}.hero-text p{margin:20px 0}
+.btn{background:#c40000;color:#fff;padding:12px 25px;text-decoration:none;border-radius:30px;display:inline-block}
+.hero-images{display:flex;gap:15px}
+.hero-images img{width:110px;height:150px;object-fit:cover;border-radius:10px}
+.products{padding:70px 8%;text-align:center}
+.products h2,.about h2,.reviews h2{color:#006633;margin-bottom:40px}
+.product-grid,.features,.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+.card,.features div,.review-card{background:#fff;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.1);padding:0;overflow:hidden;transition:.3s}
+.card:hover,.review-card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:250px;object-fit:cover}
+.card h3{margin:15px 0}.card p{color:#d62828;font-weight:bold}
+.card button{margin:20px;padding:12px 25px;background:#006633;color:#fff;border:none;border-radius:5px}
+.about{background:#f8f8f8;padding:70px 8%;text-align:center}
+.features div{padding:30px}
+.reviews{padding:70px 8%;background:#fff8f3;text-align:center}
+.review-card{padding:30px}
+.stars{color:gold;font-size:22px;margin-bottom:10px}
+.review-card p{font-style:italic;color:#555;margin-bottom:15px}
+.review-card h4{color:#006633}
+footer{background:#0b6623;color:#fff;text-align:center;padding:20px}
+@media(max-width:768px){
+.hero-content{flex-direction:column;text-align:center}
+.nav-links{position:absolute;top:70px;right:0;background:#fff;flex-direction:column;width:200px;display:none;padding:20px}
+.nav-links.active{display:flex}.menu-toggle{display:block}
 }
 </style>
 </head>
-
 <body>
-
-<!-- NAV -->
 <nav>
-    <div class="logo">🌶️ Melmat</div>
-
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <div class="nav-links" id="navLinks">
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Contact</a>
-    </div>
+<div class="logo">🌶️ Melmat</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
+<a href="#">Home</a>
+<a href="#featured-products">Products</a>
+<a href="#">Contact</a>
+</div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-    <div class="hero-content">
-
-        <div class="hero-text">
-            <h1>Pure Flavours. <span>Trusted Quality.</span></h1>
-            <p>Home made chillies crafted with passion 🌶️</p>
-
-            <a href="https://wa.me/27679435186" class="btn">
-                Order Now on WhatsApp
-            </a>
-        </div>
-
-        <div class="hero-images">
-            <img src="mixed.jpg">
-            <img src="dried.jpg">
-            <img src="crushed.jpg">
-        </div>
-
-    </div>
+<div class="hero-content">
+<div class="hero-text">
+<h1>Pure Flavours. <span>Trusted Quality.</span></h1>
+<p>Home made chillies crafted with passion 🌶️</p>
+<a href="https://wa.me/27679435186" class="btn">Order Now on WhatsApp</a>
+</div>
+<div class="hero-images">
+<img src="mixed.jpg">
+<img src="dried.jpg">
+<img src="crushed.jpg">
+</div>
+</div>
 </section>
 
-    <section class="products">
-
-        <h2>Featured Products</h2>
-
-        <div class="product-grid">
-
-            <div class="card">
-                <img src="mixed.jpg" alt="Fresh Chillies">
-                <h3>Fresh Chillies</h3>
-                <p>R---</p>
-                <button>Add to Cart</button>
-            </div>
-
-            <div class="card">
-                <img src="dried.jpg" alt="Dried Chillies">
-                <h3>Dried Chillies</h3>
-                <p>R---</p>
-                <button>Add to Cart</button>
-            </div>
-
-            <div class="card">
-                <img src="crushed.jpg" alt="Crushed Chillies">
-                <h3>Crushed Chillies</h3>
-                <p>R---</p>
-                <button>Add to Cart</button>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="about">
-
-        <h2>Why Choose Melmat?</h2>
-
-        <div class="features">
-
-            <div>
-                <h3>Authentic Taste</h3>
-                <p>Home-made. Pure. Natural.</p>
-            </div>
-
-            <div>
-                <h3>Quality You Trust</h3>
-                <p>Carefully grown and hygienically made.</p>
-            </div>
-
-            <div>
-                <h3>Made with Passion</h3>
-                <p>Crafted with love for every customer.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-<!-- PRODUCTS -->
-<section class="products">
-    <h2>Customers reviews</h2>
-
-    <div class="product-grid">
-        <div class="product">
-            <h3>Mamabatho Mahwelereng</h3>
-            <p>"This is shuch an amazing chilli brand. you should try it out"</p>
-        </div>
-
-        <div class="product">
-            <h3>Bontle Polokwane</h3>
-            <p>"Im a very happy client"</p>
-        </div>
-
-        <div class="product">
-            <h3>Mamabeka Ga madiba</h3>
-            <p>" My hangover has got nothing on this chillies"</p>
-        </div>
-    </div>
+<section id="featured-products" class="products">
+<h2>Featured Products</h2>
+<div class="product-grid">
+<div class="card"><img src="mixed.jpg"><h3>Fresh Chillies</h3><p>R---</p><button>Add to Cart</button></div>
+<div class="card"><img src="dried.jpg"><h3>Dried Chillies</h3><p>R---</p><button>Add to Cart</button></div>
+<div class="card"><img src="crushed.jpg"><h3>Crushed Chillies</h3><p>R---</p><button>Add to Cart</button></div>
+</div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>📞 067 943 5186</p>
-    <p>© Melmat Chillies</p>
-</footer>
+<section class="about">
+<h2>Why Choose Melmat?</h2>
+<div class="features">
+<div><h3>Authentic Taste</h3><p>Home-made. Pure. Natural.</p></div>
+<div><h3>Quality You Trust</h3><p>Carefully grown and hygienically made.</p></div>
+<div><h3>Made with Passion</h3><p>Crafted with love for every customer.</p></div>
+</div>
+</section>
 
+<section class="reviews">
+<h2>What Our Customers Say</h2>
+<div class="reviews-grid">
+<div class="review-card"><div class="stars">★★★★★</div><p>"This is such an amazing chilli brand. You should try it!"</p><h4>— Mamabatho, Mahwelereng</h4></div>
+<div class="review-card"><div class="stars">★★★★★</div><p>"I'm a very happy customer."</p><h4>— Bontle, Polokwane</h4></div>
+<div class="review-card"><div class="stars">★★★★★</div><p>"My hangover has got nothing on these chillies! 😂"</p><h4>— Mamabeka, Ga Madiba</h4></div>
+</div>
+</section>
+
+<footer><p>📞 067 943 5186</p><p>© Melmat Chillies</p></footer>
 <script>
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-}
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('active');}
 </script>
-
-</body>
-</html>
+</body></html>
