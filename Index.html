@@ -161,161 +161,181 @@ Close
 <div class="review-card"><div class="stars">★★★★★</div><p>"My hangover has got nothing on these chillies! 😂"</p><h4>— Mamabeka, Ga Madiba</h4></div>
 </div>
 </section>
+<!-- FOOTER -->
+<footer>
+    <p>📞 067 943 5186</p>
+    <p>© Melmat Chillies</p>
+</footer>
 
-<footer><p>📞 067 943 5186</p><p>© Melmat Chillies</p></footer>
-<scrip>
+<!-- CART POPUP -->
+<div id="cartModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);justify-content:center;align-items:center;z-index:9999;">
 
-let cart=[];
+<div style="background:white;width:90%;max-width:500px;padding:25px;border-radius:15px;max-height:80vh;overflow:auto;">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<h3 id="cartTotal">Total: R0</h3>
+
+<br>
+
+<button onclick="checkoutWhatsApp()" class="btn">
+Complete Order on WhatsApp
+</button>
+
+<br><br>
+
+<button onclick="closeCart()">
+Close
+</button>
+
+</div>
+</div>
+
+<script>
+
+let cart = [];
 
 function toggleMenu(){
-document.getElementById("navLinks").classList.toggle("active");
+    document.getElementById("navLinks").classList.toggle("active");
 }
 
-function addToCart(name,price){
+function addToCart(name, price){
 
-let item=cart.find(p=>p.name===name);
+    let item = cart.find(p => p.name === name);
 
-if(item){
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            qty:1
+        });
+    }
 
-item.qty++;
-
-}else{
-
-cart.push({
-name:name,
-price:price,
-qty:1
-});
-
-}
-
-updateCart();
-
+    updateCart();
 }
 
 function updateCart(){
 
-document.getElementById("cart-count").innerHTML=
-
-cart.reduce((sum,item)=>sum+item.qty,0);
+    document.getElementById("cart-count").innerHTML =
+    cart.reduce((sum,item)=>sum+item.qty,0);
 
 }
 
 function openCart(){
 
-let items="";
+    let items = "";
+    let total = 0;
 
-let total=0;
+    cart.forEach((item,index)=>{
 
-cart.forEach((item,index)=>{
+        total += item.price * item.qty;
 
-total+=item.price*item.qty;
+        items += `
+        <div style="margin-bottom:20px;border-bottom:1px solid #ddd;padding-bottom:10px;">
 
-items+=`
+        <h3>${item.name}</h3>
 
-<div style="margin-bottom:20px;border-bottom:1px solid #ddd;padding-bottom:10px;">
+        <p>R${item.price}</p>
 
-<h3>${item.name}</h3>
+        <button onclick="decrease(${index})">-</button>
 
-<p>R${item.price}</p>
+        ${item.qty}
 
-<button onclick="decrease(${index})">-</button>
+        <button onclick="increase(${index})">+</button>
 
-${item.qty}
+        <button onclick="removeItem(${index})">
+        Remove
+        </button>
 
-<button onclick="increase(${index})">+</button>
+        </div>
+        `;
 
-<button onclick="removeItem(${index})">
+    });
 
-Remove
+    document.getElementById("cartItems").innerHTML = items;
 
-</button>
+    document.getElementById("cartTotal").innerHTML = "Total: R"+total;
 
-</div>
-
-`;
-
-});
-
-document.getElementById("cartItems").innerHTML=items;
-
-document.getElementById("cartTotal").innerHTML=
-
-"Total: R"+total;
-
-document.getElementById("cartModal").style.display="flex";
+    document.getElementById("cartModal").style.display = "flex";
 
 }
 
 function closeCart(){
 
-document.getElementById("cartModal").style.display="none";
+    document.getElementById("cartModal").style.display = "none";
 
 }
 
 function increase(i){
 
-cart[i].qty++;
+    cart[i].qty++;
 
-updateCart();
+    updateCart();
 
-openCart();
+    openCart();
 
 }
 
 function decrease(i){
 
-cart[i].qty--;
+    cart[i].qty--;
 
-if(cart[i].qty<=0){
+    if(cart[i].qty<=0){
 
-cart.splice(i,1);
+        cart.splice(i,1);
 
-}
+    }
 
-updateCart();
+    updateCart();
 
-openCart();
+    openCart();
 
 }
 
 function removeItem(i){
 
-cart.splice(i,1);
+    cart.splice(i,1);
 
-updateCart();
+    updateCart();
 
-openCart();
+    openCart();
 
 }
 
 function checkoutWhatsApp(){
 
-let phone="27679435186";
+    let phone = "27679435186";
 
-let message="Hello Melmat Chillies 👋%0A%0AI'd like to place an order.%0A%0A";
+    let message = "Hello Melmat Chillies 👋%0A%0A";
 
-let total=0;
+    message += "I'd like to place an order.%0A%0A";
 
-cart.forEach(item=>{
+    let total = 0;
 
-message+=`🌶 ${item.name} x${item.qty}%0A`;
+    cart.forEach(item=>{
 
-total+=item.price*item.qty;
+        message += "🌶 " + item.name + " x" + item.qty + "%0A";
 
-});
+        total += item.price * item.qty;
 
-message+=`%0ATotal: R${total}%0A%0APlease confirm my order.`;
+    });
 
-window.open(
+    message += "%0ATotal: R" + total;
 
-"https://wa.me/"+phone+"?text="+message,
+    message += "%0A%0APlease confirm my order.";
 
-"_blank"
-
-);
+    window.open(
+        "https://wa.me/"+phone+"?text="+message,
+        "_blank"
+    );
 
 }
 
 </script>
-</body></html>
+
+</body>
+</html>
