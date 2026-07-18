@@ -46,14 +46,71 @@ footer{background:#0b6623;color:#fff;text-align:center;padding:20px}
 }
 </style>
 </head>
+  <div id="cartModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+<div style="
+background:white;
+width:90%;
+max-width:500px;
+padding:25px;
+border-radius:15px;
+max-height:80vh;
+overflow:auto;
+">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<h3 id="cartTotal">
+Total: R0
+</h3>
+
+<br>
+
+<button
+onclick="checkoutWhatsApp()"
+class="btn">
+
+Complete Order on WhatsApp
+
+</button>
+
+<br><br>
+
+<button
+onclick="closeCart()">
+
+Close
+
+</button>
+
+</div>
+
+  </div>
 <body>
 <nav>
 <div class="logo">🌶️ Melmat</div>
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 <div class="nav-links" id="navLinks">
-<a href="#">Home</a>
-<a href="#featured-products">Products</a>
-<a href="#">Contact</a>
+    <a href="#">Home</a>
+    <a href="#featured-products">Products</a>
+    <a href="#">Contact</a>
+    <a href="#" onclick="openCart()">
+        🛒 Cart (<span id="cart-count">0</span>)
+    </a>
 </div>
 </nav>
 
@@ -75,9 +132,15 @@ footer{background:#0b6623;color:#fff;text-align:center;padding:20px}
 <section id="featured-products" class="products">
 <h2>Featured Products</h2>
 <div class="product-grid">
-<div class="card"><img src="mixed.jpg"><h3>Fresh Chillies</h3><p>R---</p><button>Add to Cart</button></div>
-<div class="card"><img src="dried.jpg"><h3>Dried Chillies</h3><p>R---</p><button>Add to Cart</button></div>
-<div class="card"><img src="crushed.jpg"><h3>Crushed Chillies</h3><p>R---</p><button>Add to Cart</button></div>
+<div class="card"><img src="mixed.jpg"><h3>Fresh Chillies</h3><p>R---</p><button onclick="addToCart('Fresh Chillies',35)">
+    Add to Cart
+</button></div>
+<div class="card"><img src="dried.jpg"><h3>Dried Chillies</h3><p>R---</p><button onclick="addToCart('Dried Chillies',45)">
+    Add to Cart
+</button></div>
+<div class="card"><img src="crushed.jpg"><h3>Crushed Chillies</h3><p>R---</p><button onclick="addToCart('Crushed Chillies',55)">
+    Add to Cart
+</button></div>
 </div>
 </section>
 
@@ -100,7 +163,159 @@ footer{background:#0b6623;color:#fff;text-align:center;padding:20px}
 </section>
 
 <footer><p>📞 067 943 5186</p><p>© Melmat Chillies</p></footer>
-<script>
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('active');}
+<scrip>
+
+let cart=[];
+
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("active");
+}
+
+function addToCart(name,price){
+
+let item=cart.find(p=>p.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:name,
+price:price,
+qty:1
+});
+
+}
+
+updateCart();
+
+}
+
+function updateCart(){
+
+document.getElementById("cart-count").innerHTML=
+
+cart.reduce((sum,item)=>sum+item.qty,0);
+
+}
+
+function openCart(){
+
+let items="";
+
+let total=0;
+
+cart.forEach((item,index)=>{
+
+total+=item.price*item.qty;
+
+items+=`
+
+<div style="margin-bottom:20px;border-bottom:1px solid #ddd;padding-bottom:10px;">
+
+<h3>${item.name}</h3>
+
+<p>R${item.price}</p>
+
+<button onclick="decrease(${index})">-</button>
+
+${item.qty}
+
+<button onclick="increase(${index})">+</button>
+
+<button onclick="removeItem(${index})">
+
+Remove
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("cartItems").innerHTML=items;
+
+document.getElementById("cartTotal").innerHTML=
+
+"Total: R"+total;
+
+document.getElementById("cartModal").style.display="flex";
+
+}
+
+function closeCart(){
+
+document.getElementById("cartModal").style.display="none";
+
+}
+
+function increase(i){
+
+cart[i].qty++;
+
+updateCart();
+
+openCart();
+
+}
+
+function decrease(i){
+
+cart[i].qty--;
+
+if(cart[i].qty<=0){
+
+cart.splice(i,1);
+
+}
+
+updateCart();
+
+openCart();
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1);
+
+updateCart();
+
+openCart();
+
+}
+
+function checkoutWhatsApp(){
+
+let phone="27679435186";
+
+let message="Hello Melmat Chillies 👋%0A%0AI'd like to place an order.%0A%0A";
+
+let total=0;
+
+cart.forEach(item=>{
+
+message+=`🌶 ${item.name} x${item.qty}%0A`;
+
+total+=item.price*item.qty;
+
+});
+
+message+=`%0ATotal: R${total}%0A%0APlease confirm my order.`;
+
+window.open(
+
+"https://wa.me/"+phone+"?text="+message,
+
+"_blank"
+
+);
+
+}
+
 </script>
 </body></html>
